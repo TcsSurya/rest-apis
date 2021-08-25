@@ -5,13 +5,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+@Entity
 public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer ID;
-	private String firstName;
+	@NotBlank(message = "first Name is mandatory")
+    private String firstName;
 	private String lastName;
-	private int age;
+	
+	@Size(min=10, max=80,message="Age is either less than 10 or more than 80")
+    private int age;
 	private String Address;
 	
 	@OneToOne
